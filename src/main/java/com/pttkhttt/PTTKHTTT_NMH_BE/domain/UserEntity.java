@@ -2,7 +2,9 @@ package com.pttkhttt.PTTKHTTT_NMH_BE.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "tbl_user")
 public class UserEntity {
