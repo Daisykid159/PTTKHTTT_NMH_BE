@@ -14,18 +14,18 @@ public class UserService {
     UserRepository userRepository;
 
     public CommonResponse dangNhap(UserDTO userDTO){
-        UserEntity userEntity = userRepository.getUserEntitiesByUserNamePasAndPassword(userDTO.getUserName(), userDTO.getPassword());
+        UserEntity userEntity = userRepository.getUserEntitiesByUserNamePasAndPassword(userDTO.getUsername(), userDTO.getPassword());
         if(userEntity == null) return new CommonResponse().ok(false).message("Tên đăng nhập hoặc mật khẩu không chính xác");
         UserDTO result = new UserDTO();
-        userDTO.setUserName(userEntity.getUserName());
+        result.setUsername(userEntity.getUsername());
         return new CommonResponse().success().data(result);
     }
 
     public CommonResponse dangKy(UserDTO userDTO){
-        UserEntity userEntity = userRepository.getUserEntitiesByUserName(userDTO.getUserName());
-        if(userEntity != null) return new CommonResponse().ok(false).message("Đã tồn tại username: " + userDTO.getUserName());
+        UserEntity userEntity = userRepository.getUserEntitiesByUserName(userDTO.getUsername());
+        if(userEntity != null) return new CommonResponse().ok(false).message("Đã tồn tại username: " + userDTO.getUsername());
         userEntity = new UserEntity();
-        userEntity.setUserName(userDTO.getUserName());
+        userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(userDTO.getPassword());
         return new CommonResponse().success();
     }
