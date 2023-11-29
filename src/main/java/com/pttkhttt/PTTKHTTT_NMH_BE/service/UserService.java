@@ -27,6 +27,7 @@ public class UserService {
         userEntity = new UserEntity();
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(userDTO.getPassword());
+        userRepository.save(userEntity);
         return new CommonResponse().success();
     }
 
